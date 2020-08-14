@@ -1,0 +1,29 @@
+button {
+  padding: 10px 20px;
+  border: 1px solid $color-cornflower-blue;
+  color: #333;
+  background-color: $color-white;
+  border-radius: $borderRadius;
+  font-size: $font-size-base;
+  font-family: $font-global;
+  cursor: pointer;
+
+  &[disabled]{
+    cursor: not-allowed;
+  }
+
+  &.danger {
+    background-color: #ff4949;
+    color: #fff;
+  }
+
+  &.success {
+    background-color: #13ce66;
+    color: #fff;
+  }
+
+  &.info {
+    background-color: #50bfff;
+    color: #fff;
+  }
+}
