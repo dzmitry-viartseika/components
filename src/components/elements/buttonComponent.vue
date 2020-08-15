@@ -4,7 +4,8 @@
           :disabled="options.disabled"
           @click="callback($event)"
   >
-    <i :class="`icon-${options.icon}`" class="button__icon">123</i>{{ options.buttonText }}
+    <i :class="`icon-${options.icon}`" v-if="options.icon" class="button__icon"></i>
+    {{ options.buttonText }}
   </button>
 </template>
 
