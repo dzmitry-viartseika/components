@@ -1,10 +1,10 @@
 <template>
-  <button class="normal"
+  <button class="button"
           :class="options.type"
           :disabled="options.disabled"
           @click="callback($event)"
   >
-    {{ options.buttonText }}
+    <i :class="`icon-${options.icon}`" class="button__icon">123</i>{{ options.buttonText }}
   </button>
 </template>
 
@@ -35,5 +35,8 @@ export default {
 
   .button {
 
+    &__icon {
+      margin-right: 5px;
+    }
   }
 </style>

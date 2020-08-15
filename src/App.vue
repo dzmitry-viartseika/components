@@ -42,6 +42,7 @@ export default {
         buttonText: 'Click me',
         disabled: false,
         event: this.callback(),
+        icon: 'test',
       };
     },
   },
