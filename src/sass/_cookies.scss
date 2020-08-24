@@ -1,9 +1,7 @@
-.Cookie--base {
-  background: rgba($color-black, .9);
-  color: $color-white;
-  height: 80px;
-
-  .cookies {
+.cookies {
+    background: rgba($color-black, .9);
+    color: $color-white;
+    height: 80px;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -64,5 +62,4 @@
         }
       }
     }
-  }
 }

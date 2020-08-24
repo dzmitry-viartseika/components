@@ -8,8 +8,7 @@
       <h2>Button</h2>
       <my-button :buttonOptions="buttonOptions"/>
     </div>
-    <cookie-law>
-      <div slot-scope="props" class="cookies">
+      <div class="cookies" v-if="!cookieToken">
         <div class="cookies-info">
           <div class="cookies__text">
             Мы используем cookie-файлы.
@@ -18,20 +17,27 @@
           </div>
         </div>
         <div class="cookies-btns">
-          <button class="cookies-btns__btn cookies-btns__btn_border" @click="props.close">
+          <button class="cookies-btns__btn cookies-btns__btn_border" @click="close">
             <span>Нет, спасибо</span>
           </button>
-          <button class="cookies-btns__btn cookies-btns__btn_primary" @click="props.accept">
+          <button class="cookies-btns__btn cookies-btns__btn_primary" @click="accept">
             <span>Окей</span>
           </button>
         </div>
       </div>
-    </cookie-law>
+    <nav id="hf-nav">
+      <div v-for="item in itemLinks" :key="item.link"
+      >
+        <a :href="`${item.link}`">{{ item.title }}</a>
+        <nav v-if="item.subItems">
+          <a v-for="sub in item.subItems" :key="sub.link"  :href="`${sub.link}`">{{ sub.title }}</a>
+        </nav>
+      </div>
+    </nav>
   </div>
 </template>
 
 <script>
-import CookieLaw from 'vue-cookie-law';
 import dropdown from './components/elements/dropdown.vue';
 import buttonComponent from './components/elements/buttonComponent.vue';
 
@@ -40,8 +46,25 @@ export default {
   components: {
     dropdown,
     myButton: buttonComponent,
-    CookieLaw,
   },
+  data: () => ({
+    itemLinks: [
+      { title: 'Home', link: './' },
+      {
+        title: '1',
+        link: './diensten',
+        subItems: [
+          { title: '2', link: './elektromontage' },
+          { title: '3', link: './installatietechniek' },
+          { title: '4', link: './schoonmaak' },
+          { title: '5', link: './overige-diensten' },
+        ],
+      },
+      { title: '6', link: './over-hf' },
+      { title: '7', link: './contact' },
+    ],
+    cookieToken: false,
+  }),
   computed: {
     dropdownOptions() {
       return {
@@ -68,9 +91,25 @@ export default {
     },
   },
   methods: {
+    close() {
+      this.cookieToken = true;
+      localStorage.setItem('cookie', false);
+    },
+    accept() {
+      this.cookieToken = true;
+      localStorage.setItem('cookie', true);
+    },
     callback() {
       console.log('clicked button');
     },
+  },
+  beforeMount() {
+    const token = JSON.parse(localStorage.getItem('cookie'));
+    if (token) {
+      this.cookieToken = true;
+    } else {
+      this.cookieToken = false;
+    }
   },
 };
 </script>
