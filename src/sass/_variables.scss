@@ -15,13 +15,29 @@ $color-denim: #0F57DD;
 $color-cornflower-blue: #0F57DD;
 
 // Fonts
-$font-global: Segoi, sans-serif;
+$font-global: Ubuntu, sans-serif;
+$font-global-medium: Ubuntu-medium, sans-serif;
+$font-global-bold: Ubuntu-bold, sans-serif;
 
 // font-size
 $font-size-base: 14px;
+$font-size-xlg: 16px;
+$font-size-dd: 20px;
+$font-size-lg: 15px;
+$font-size-ml: 13px;
 $font-size-md: 12px;
 $font-size-sm: 11px;
+$font-size-large: 11px;
+$font-size-huge: 22px;
+$font-size-icon: 8px;
+
 $font-size-h1: 22px;
 $font-size-h2: 16px;
 $font-size-h3: 14px;
 $font-size-h6: 8px;
+
+//z-index
+$z-index-biggest: 99999;
+$z-index-big: 100;
+$z-index-middle: 50;
+$z-index-small: 20;

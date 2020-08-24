@@ -34,17 +34,20 @@
         </nav>
       </div>
     </nav>
+    <leftSideBar />
   </div>
 </template>
 
 <script>
 import dropdown from './components/elements/dropdown.vue';
 import buttonComponent from './components/elements/buttonComponent.vue';
+import leftSideBar from './components/leftSidebar.vue';
 
 export default {
   name: 'App',
   components: {
     dropdown,
+    leftSideBar,
     myButton: buttonComponent,
   },
   data: () => ({
