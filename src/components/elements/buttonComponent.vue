@@ -2,7 +2,7 @@
   <button class="button"
           :class="options.type"
           :disabled="options.disabled"
-          @click="callback($event)"
+          @click="buttonOptions.onClick"
   >
     <i :class="`icon-${options.icon}`" v-if="options.icon" class="button__icon"></i>
     {{ options.buttonText }}
@@ -24,9 +24,12 @@ export default {
     },
   },
   methods: {
-    callback(e) {
-      this.$emit('options.event', e);
+    test2() {
+      this.$emit('buttonOptions.onClick');
     },
+  },
+  beforeMount() {
+    console.log('buttonOptions', this.buttonOptions);
   },
 };
 </script>
