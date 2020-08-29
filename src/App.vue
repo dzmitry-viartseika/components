@@ -10,12 +10,19 @@
     </div>
     <cookieNotification v-if="!cookieToken" :cookieToken.sync="cookieToken"/>
     <accordion  :items="items"/>
+    <textInput
+      :typeInput="'text'"
+      :autofocus="true"
+      :value.sync="newTypeService"
+      @test="test"
+    ></textInput>
   </div>
 </template>
 
 <script>
 import dropdown from './components/elements/dropdown.vue';
 import accordion from './components/elements/accordion.vue';
+import textInput from './components/elements/textInput.vue';
 import cookieNotification from './components/cookieNotification.vue';
 import buttonComponent from './components/elements/buttonComponent.vue';
 
@@ -24,10 +31,12 @@ export default {
   components: {
     dropdown,
     cookieNotification,
+    textInput,
     accordion,
     myButton: buttonComponent,
   },
   data: () => ({
+    newTypeService: '',
     cookieToken: false,
     items: [{
       id: 1,
