@@ -45,15 +45,12 @@ export default {
   }
 
   &__item + &__item {
-    position: relative;
-    margin-left: 17px;
+    margin-left: 6px;
 
-    &:after {
-      position: absolute;
-      content: '/';
-      left: -11px;
-      top: 1px;
+    &:before {
       color: $color-silver-chalice;
+      margin-right: 6px;
+      content: '/';
     }
   }
 }
