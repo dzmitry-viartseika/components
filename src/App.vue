@@ -15,7 +15,8 @@
       :autofocus="true"
       :value.sync="newTypeService"
       @test="test"
-    ></textInput>
+    />
+    <breadScrums :items="breadCrumbs" />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import dropdown from './components/elements/dropdown.vue';
 import accordion from './components/elements/accordion.vue';
 import textInput from './components/elements/textInput.vue';
 import cookieNotification from './components/cookieNotification.vue';
+import breadScrums from './components/breadscrums.vue';
 import buttonComponent from './components/elements/buttonComponent.vue';
 
 export default {
@@ -33,6 +35,7 @@ export default {
     cookieNotification,
     textInput,
     accordion,
+    breadScrums,
     myButton: buttonComponent,
   },
   data: () => ({
@@ -54,6 +57,12 @@ export default {
     }],
   }),
   computed: {
+    breadCrumbs() {
+      return [
+        { name: '0000', route: '/' },
+        { name: '123', route: '/selection-service' },
+      ];
+    },
     dropdownOptions() {
       return {
         list: [
