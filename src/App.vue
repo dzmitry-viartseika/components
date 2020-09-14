@@ -17,6 +17,27 @@
       @test="test"
     />
     <breadScrums :items="breadCrumbs" />
+    <h2>Tabs</h2>
+    <div>
+      selected={{ selected }}
+    </div>
+    <tabNav :tabs="tabs" :selected="selected" @selected="setSelected">
+      <tabItem v-if="selected === 'Home'">
+        <p>Some text 1</p>
+      </tabItem>
+      <tabItem v-else-if="selected === 'Settings'">
+        <h1>Large title of tab</h1>
+      </tabItem>
+      <tabItem v-else-if="selected === 'Profile'">
+        <ul>
+          <li>12</li>
+          <li>13</li>
+          <li>14</li>
+          <li>15</li>
+          <li>16</li>
+        </ul>
+      </tabItem>
+    </tabNav>
   </div>
 </template>
 
@@ -27,6 +48,8 @@ import textInput from './components/elements/textInput.vue';
 import cookieNotification from './components/cookieNotification.vue';
 import breadScrums from './components/breadscrums.vue';
 import buttonComponent from './components/elements/buttonComponent.vue';
+import tabNav from './components/tab/tabNav.vue';
+import tabItem from './components/tab/tab.vue';
 
 export default {
   name: 'App',
@@ -36,6 +59,8 @@ export default {
     textInput,
     accordion,
     breadScrums,
+    tabNav,
+    tabItem,
     myButton: buttonComponent,
   },
   data: () => ({
@@ -55,6 +80,8 @@ export default {
       title: 'Construction, planning and environmental law',
       content: 'greee 3Our specialists in the fields of construction, planning and environmental law advise and represent builders, planners and architects, corporations, affected neighboring communities and associations of communities in:',
     }],
+    tabs: ['Home', 'Settings', 'Profile'],
+    selected: 'Home',
   }),
   computed: {
     breadCrumbs() {
@@ -90,6 +117,9 @@ export default {
   methods: {
     test() {
       console.log('clicked button');
+    },
+    setSelected(tab) {
+      this.selected = tab;
     },
   },
   beforeMount() {
