@@ -38,6 +38,15 @@
         </ul>
       </tabItem>
     </tabNav>
+    <div class="list">
+      <div v-for="item in list" :key="item.id" class="list__item" :ref="item.id">
+        {{ item.text }}
+        <i @click="openModal($event, item.id)">x</i>
+      </div>
+    </div>
+    <div ref="list" v-if="isVisibleModal && activeModal !== -1" class="modal">
+      {{  activeModal  }}
+    </div>
   </div>
 </template>
 
@@ -64,6 +73,8 @@ export default {
     myButton: buttonComponent,
   },
   data: () => ({
+    activeModal: -1,
+    isVisibleModal: false,
     newTypeService: '',
     cookieToken: false,
     items: [{
@@ -82,6 +93,28 @@ export default {
     }],
     tabs: ['Home', 'Settings', 'Profile'],
     selected: 'Home',
+    list: [
+      {
+        id: 1,
+        text: '123k123k12j31j23kj1231231',
+      },
+      {
+        id: 2,
+        text: '123k123k12j31j23kj1231231',
+      },
+      {
+        id: 3,
+        text: '123k123k12j31j23kj1231231',
+      },
+      {
+        id: 4,
+        text: '123k123k12j31j23kj1231231',
+      },
+      {
+        id: 5,
+        text: '123k123k12j31j23kj1231231',
+      },
+    ],
   }),
   computed: {
     breadCrumbs() {
@@ -115,6 +148,20 @@ export default {
     },
   },
   methods: {
+    openModal(e, id) {
+      const el = e.currentTarget;
+      console.log('el', el);
+      this.isVisibleModal = true;
+      if (this.activeModal !== id) this.activeModal = id;
+      else this.activeModal = -1;
+      console.log('id', id);
+      this.$nextTick(() => {
+        const left = el.getBoundingClientRect().x + 5;
+        const top = el.getBoundingClientRect().y + 41;
+        this.$refs.list.style.left = `${left}px`;
+        this.$refs.list.style.top = `${top}px`;
+      });
+    },
     test() {
       console.log('clicked button');
     },
@@ -141,6 +188,22 @@ export default {
     height: 50px;
     background: red;
     margin: 0 15px;
+  }
+
+  .list {
+    width: 100%;
+
+    &__item {
+      height: 50px;
+      position: relative;
+    }
+  }
+
+  .modal {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: red;
   }
 
   .vueperslides__track-inner {
